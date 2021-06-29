@@ -4,7 +4,10 @@ $( document ).ready( onReady );
 
 function onReady() {
     console.log('DOM ready');
+    addJoke();
     $('#addJokeButton').on('click', addJoke)
+
+
 }
 
 
@@ -24,6 +27,7 @@ function addJoke() {
     .then( res => {
         console.log('made it to response', res);
         clearInputs();
+        retrieveJokes();
     })
     .catch(err => {
         console.log('Did not make it to response', err);
@@ -41,7 +45,7 @@ function retrieveJokes() {
     })
     .then (res => {
         console.log('joke successfully returned', res);
-        showJoke();
+        showJokes(res);
     })
     .catch (err => {
         console.log('joke did not return', err);
@@ -59,12 +63,14 @@ function clearInputs() {
 
 
 // this will show jokes as they are submitted
-function showJokes() {
+function showJokes(res) {
     console.log('getting through to show jokes');
-    for (const item of jokelist) {
+    let el = $('#outputDiv');
+    el.empty();
+    for (const item of res) {
         $('#outputDiv').append(
-            `<li>
-                Joke created by, ${item.owner} Question: ${item.ask} Punchline: ${item.punch}
-            </li>`)
+            `<p>
+                Joke created by ${item.whoseJoke}. Question: ${item.jokeQuestion} Punchline: ${item.punchLine}
+            </p>`)
     }
 }

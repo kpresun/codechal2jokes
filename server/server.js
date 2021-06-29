@@ -39,9 +39,9 @@ app.post('/jokes', (req,res) => {
   let totalJoke = req.body
   console.log('made it to server side', req.body);
   jokes.push({
-    owner: totalJoke.owner,
-    ask: totalJoke.ask,
-    punch: totalJoke.punch
+    whoseJoke: totalJoke.owner,
+    jokeQuestion: totalJoke.ask,
+    punchLine: totalJoke.punch
   })
   console.log(jokes);
   res.sendStatus(201);

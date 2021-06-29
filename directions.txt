@@ -1,0 +1,4 @@
+[] Display all jokes on DOM below inputs
+[x] user can add their own joke
+[x] after joke added, DOM needs to reflect new data
+ 
